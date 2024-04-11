@@ -15,7 +15,7 @@ const emailForm = document.querySelector("#emailForm");
 
 const toast = document.querySelector(".toast");
 
-const baseURL = "http://localhost:3000";
+const baseURL = "https://inshare-p8l9.onrender.com";
 const uploadURL = `${baseURL}/api/files`;
 const emailURL = `${baseURL}/api/files/send`;
 
@@ -116,7 +116,7 @@ const uploadFile = () => {
   xhr.open("POST", uploadURL);
   xhr.send(formData);
 };
-
+  //earlier --------------> 
 const onFileUploadSuccess = (res) => {
   fileInput.value = ""; // reset the input
   status.innerText = "Uploaded";
@@ -131,6 +131,10 @@ const onFileUploadSuccess = (res) => {
   sharingContainer.style.display = "block";
   fileURL.value = url;
 };
+
+
+//chatgpt --------------------------> 
+
 
 emailForm.addEventListener("submit", (e) => {
   e.preventDefault(); // stop submission
