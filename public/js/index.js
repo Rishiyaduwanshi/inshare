@@ -1,4 +1,3 @@
-require("dotenv").config();
 const dropZone = document.querySelector(".drop-zone");
 const fileInput = document.querySelector("#fileInput");
 const browseBtn = document.querySelector("#browseBtn");
@@ -8,13 +7,15 @@ const progressPercent = document.querySelector("#progressPercent");
 const progressContainer = document.querySelector(".progress-container");
 const progressBar = document.querySelector(".progress-bar");
 const status = document.querySelector(".status");
+
 const sharingContainer = document.querySelector(".sharing-container");
 const copyURLBtn = document.querySelector("#copyURLBtn");
 const fileURL = document.querySelector("#fileURL");
 const emailForm = document.querySelector("#emailForm");
+
 const toast = document.querySelector(".toast");
 
-const baseURL = "https://inshare-p8l9.onrender.com/";
+const baseURL = "https://inshare-p8l9.onrender.com";
 const uploadURL = `${baseURL}/api/files`;
 const emailURL = `${baseURL}/api/files/send`;
 
@@ -115,12 +116,12 @@ const uploadFile = () => {
   xhr.open("POST", uploadURL);
   xhr.send(formData);
 };
-  //earlier --------------> 
+
 const onFileUploadSuccess = (res) => {
   fileInput.value = ""; // reset the input
   status.innerText = "Uploaded";
 
-  // remove the disabled attribute from form btn & make text send
+
   // emailForm[2].removeAttribute("disabled");
   // emailForm[2].innerText = "Send";
   progressContainer.style.display = "none"; // hide the box
@@ -130,10 +131,6 @@ const onFileUploadSuccess = (res) => {
   sharingContainer.style.display = "block";
   fileURL.value = url;
 };
-
-
-//chatgpt --------------------------> 
-
 
 // emailForm.addEventListener("submit", (e) => {
 //   e.preventDefault(); // stop submission
