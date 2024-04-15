@@ -1,3 +1,4 @@
+require("dotenv").config();
 const dropZone = document.querySelector(".drop-zone");
 const fileInput = document.querySelector("#fileInput");
 const browseBtn = document.querySelector("#browseBtn");
@@ -7,15 +8,13 @@ const progressPercent = document.querySelector("#progressPercent");
 const progressContainer = document.querySelector(".progress-container");
 const progressBar = document.querySelector(".progress-bar");
 const status = document.querySelector(".status");
-
 const sharingContainer = document.querySelector(".sharing-container");
 const copyURLBtn = document.querySelector("#copyURLBtn");
 const fileURL = document.querySelector("#fileURL");
 const emailForm = document.querySelector("#emailForm");
-
 const toast = document.querySelector(".toast");
 
-const baseURL = "https://inshare-p8l9.onrender.com";
+const baseURL = "https://inshare-p8l9.onrender.com/";
 const uploadURL = `${baseURL}/api/files`;
 const emailURL = `${baseURL}/api/files/send`;
 
@@ -122,8 +121,8 @@ const onFileUploadSuccess = (res) => {
   status.innerText = "Uploaded";
 
   // remove the disabled attribute from form btn & make text send
-  emailForm[2].removeAttribute("disabled");
-  emailForm[2].innerText = "Send";
+  // emailForm[2].removeAttribute("disabled");
+  // emailForm[2].innerText = "Send";
   progressContainer.style.display = "none"; // hide the box
 
   const { file: url } = JSON.parse(res);
@@ -136,36 +135,36 @@ const onFileUploadSuccess = (res) => {
 //chatgpt --------------------------> 
 
 
-emailForm.addEventListener("submit", (e) => {
-  e.preventDefault(); // stop submission
+// emailForm.addEventListener("submit", (e) => {
+//   e.preventDefault(); // stop submission
 
-  // disable the button
-  emailForm[2].setAttribute("disabled", "true");
-  emailForm[2].innerText = "Sending";
+//   // disable the button
+//   emailForm[2].setAttribute("disabled", "true");
+//   emailForm[2].innerText = "Sending";
 
-  const url = fileURL.value;
+//   const url = fileURL.value;
 
-  const formData = {
-    uuid: url.split("/").splice(-1, 1)[0],
-    emailTo: emailForm.elements["to-email"].value,
-    emailFrom: emailForm.elements["from-email"].value,
-  };
-  console.log(formData);
-  fetch(emailURL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        showToast("Email Sent");
-        sharingContainer.style.display = "none"; // hide the box
-      }
-    });
-});
+//   const formData = {
+//     uuid: url.split("/").splice(-1, 1)[0],
+//     emailTo: emailForm.elements["to-email"].value,
+//     emailFrom: emailForm.elements["from-email"].value,
+//   };
+//   console.log(formData);
+//   fetch(emailURL, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(formData),
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       if (data.success) {
+//         showToast("Email Sent");
+//         sharingContainer.style.display = "none"; // hide the box
+//       }
+//     });
+// });
 
 let toastTimer;
 // the toast function
